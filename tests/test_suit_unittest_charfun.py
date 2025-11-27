@@ -41,12 +41,12 @@ class TestSuitUnitTestCharFun(unittest.TestCase):
     
     def test_cadena_palindroma_con_simbolos_especiales_devuelve_true(self):
         
-        self.assertTrue(esPalindromo("@o#s&o$"))
+        self.assertTrue(esPalindromo("@o#s&o$\\"))
     
     
     def test_cadena_palindroma_con_simbolos_matematicos_devuelve_true(self):
         
-        self.assertTrue(esPalindromo("+-0*s%=0&&||"))    
+        self.assertTrue(esPalindromo("+-0*s%=0&&||"))
     
     
     def test_cadena_palindroma_con_unicode_devuelve_true(self):
