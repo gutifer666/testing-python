@@ -4,8 +4,8 @@ Programa que determina si una cadena proporcionada por el
 usuario es palíndroma. Para ello se preguntará por teclado al
 usuario tantas veces como quiera hasta que escriba la palabra
 salir.
-Ultima Modificación. 21/11/2024
-Autor. Gregorio Coronado Morón
+Ultima Modificación. 28/11/2025
+Autor. Francisco Javier Gutiérrez Pérez
 Dependencias. Unicodedata
 """
 import unicodedata
@@ -15,11 +15,18 @@ def esPalindromo(cadena):
     Función que verifica si una cadena es palíndroma.
     Ignora espacios, mayúsculas y tildes.
     """
-    # Convertir la cadena a minúsculas y eliminar caracteres no alfabéticos
-    cadena_limpia = ''.join(char.lower() for char in cadena if
-    char.isalnum())
+    # Normalizar: Descompone caracteres (ej: 'ó' se convierte en 'o' + '´')
+    cadena_nfd = unicodedata.normalize('NFD', cadena)
+    
+    # Filtrar: Nos quedamos solo con lo que NO sea una marca de acento ('Mn')
+    # y que sea alfanumérico
+    cadena_limpia = ''.join(
+        c.lower() 
+        for c in cadena_nfd 
+        if unicodedata.category(c) != 'Mn' and c.isalnum()
+    )
 
-    # Comparar la cadena limpia con su reverso
+    # # Comparar la cadena limpia con su reverso
     return cadena_limpia == cadena_limpia[::-1]
 
 frase = input("Introduce una frase (o escribe 'salir' para terminar): ")
