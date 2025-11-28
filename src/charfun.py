@@ -29,13 +29,21 @@ def esPalindromo(cadena):
     # # Comparar la cadena limpia con su reverso
     return cadena_limpia == cadena_limpia[::-1]
 
-frase = input("Introduce una frase (o escribe 'salir' para terminar): ")
+def ejecutar_app(input_fn=input, output_fn=print):
+    """
+    Bucle interactivo hasta que el usuario escriba 'salir'.
+    Creamos `input_fn` y `output_fn` para facilitar el testing.
+    """
+    while True:
+        frase = input_fn("Introduce una frase (o escribe 'salir' para terminar): ")
+        if frase.lower() == "salir":
+            output_fn("Programa finalizado.")
+            break
+        if esPalindromo(frase):
+            output_fn("La frase es palíndroma.")
+        else:
+            output_fn("La frase no es palíndroma.")
 
-if frase.lower() == "salir":
-    print("Programa finalizado.")
-else:
-    # Comprobar si es palíndromo
-    if esPalindromo(frase):
-        print("La frase es palíndroma.")
-    else:
-        print("La frase no es palíndroma.")
+
+if __name__ == "__main__":
+    ejecutar_app()
