@@ -2,55 +2,30 @@ import unittest
 from src.charfun import esPalindromo
 
 class TestSuitUnitTestCharFun(unittest.TestCase):
-    
-    def test_cadena_palindroma_en_minusculas_devuelve_true(self):
-        
-        self.assertTrue(esPalindromo("oso"))
 
+    def test_parametrizado_palindromos(self):
+        # Casos que deben devolver True
+        casos_true = [
+            "oso",                 # minúsculas
+            "osO",                 # mixto mayúsc/minúsc
+            "0s0",                 # alfanumérico
+            "",                    # cadena vacía
+            " os o ",              # con espacios
+            "'!o?s,o.;:?",         # con puntuación
+            "@o#s&o$\\",          # con símbolos especiales (ojo con el backslash)
+            "+-0*s%=0&&||",        # con símbolos matemáticos
+            "osó",                 # unicode con tilde
+        ]
+        for s in casos_true:
+            with self.subTest(caso=s):
+                self.assertTrue(esPalindromo(s))
 
-    def test_cadena_palindroma_en_minusculas_y_mayusculas_devuelve_true(self):
-        
-        self.assertTrue(esPalindromo("osO"))
-
-    
-    def test_cadena_palindroma_alfanumerica_devuelve_true(self):
-        
-        self.assertTrue(esPalindromo("0s0"))
-    
-    
-    def test_cadena_no_palindroma_devuelve_false(self):
-        
-        self.assertFalse(esPalindromo("osa"))
-
-
-
-    def test_cadena_vacia_devuelve_true(self):
-        
-        self.assertTrue(esPalindromo(""))
-
-
-    def test_cadena_palindroma_con_espacio_devuelve_true(self):
-        
-        self.assertTrue(esPalindromo(" os o "))
-
-
-    def test_cadena_palindroma_con_puntuacion_devuelve_true(self):
-        
-        self.assertTrue(esPalindromo("'!o?s,o.;:?"))
-
-    
-    def test_cadena_palindroma_con_simbolos_especiales_devuelve_true(self):
-        
-        self.assertTrue(esPalindromo("@o#s&o$\\"))
-    
-    
-    def test_cadena_palindroma_con_simbolos_matematicos_devuelve_true(self):
-        
-        self.assertTrue(esPalindromo("+-0*s%=0&&||"))
-    
-    
-    def test_cadena_palindroma_con_unicode_devuelve_true(self):
-        
-        self.assertTrue(esPalindromo("osó"))
-
-
+    def test_parametrizado_no_palindromos(self):
+        # Casos que deben devolver False
+        casos_false = [
+            "osa",
+            # añade más si quieres: "abc", "ab", "Python", ...
+        ]
+        for s in casos_false:
+            with self.subTest(caso=s):
+                self.assertFalse(esPalindromo(s))
