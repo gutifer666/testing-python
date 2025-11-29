@@ -10,7 +10,7 @@ Dependencias. Unicodedata
 """
 import unicodedata
 
-def esPalindromoOriginal(cadena):
+def esPalindromo(cadena):
     """
     Función que verifica si una cadena es palíndroma.
     Ignora espacios, mayúsculas y tildes.
@@ -20,25 +20,6 @@ def esPalindromoOriginal(cadena):
     char.isalnum())
 
     # Comparar la cadena limpia con su reverso
-    return cadena_limpia == cadena_limpia[::-1]
-
-def esPalindromo(cadena):
-    """
-    Función que verifica si una cadena es palíndroma.
-    Ignora espacios, mayúsculas y tildes.
-    """
-    # 1. Normalizar: Descompone caracteres (ej: 'ó' se convierte en 'o' + '´')
-    cadena_nfd = unicodedata.normalize('NFD', cadena)
-    
-    # 2. Filtrar: Nos quedamos solo con lo que NO sea una marca de acento ('Mn')
-    # y que sea alfanumérico
-    cadena_limpia = ''.join(
-        c.lower() 
-        for c in cadena_nfd 
-        if unicodedata.category(c) != 'Mn' and c.isalnum()
-    )
-
-    # 3. Comparar
     return cadena_limpia == cadena_limpia[::-1]
 
 frase = input("Introduce una frase (o escribe 'salir' para terminar): ")
