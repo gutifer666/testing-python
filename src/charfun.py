@@ -14,7 +14,13 @@ def esPalindromo(cadena):
     """
     Función que verifica si una cadena es palíndroma.
     Ignora espacios, mayúsculas y tildes.
+
+    Precondición: `cadena` debe ser un string.
     """
+    # Precondición
+    if not isinstance(cadena, str):
+        raise TypeError("Cadena debe ser un string.")
+
     # Normalizar: Descompone caracteres (ej: 'ó' se convierte en 'o' + '´')
     cadena_nfd = unicodedata.normalize('NFD', cadena)
     

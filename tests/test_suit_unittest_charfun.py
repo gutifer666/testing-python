@@ -32,3 +32,8 @@ class TestSuitUnitTestCharFun(unittest.TestCase):
         for s in casos_false:
             with self.subTest(caso=s):
                 self.assertFalse(esPalindromo(s))
+    
+    def test_si_pasamos_un_entero_como_argumento_se_lanza_una_excepcion(self):
+        cadena = 1221
+        with self.assertRaises(TypeError):
+            esPalindromo(cadena)
